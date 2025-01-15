@@ -42,9 +42,10 @@
 ## Model Zoo
 
 ### InternLM3
-| Model                     | Transformers(HF)                           | ModelScope(HF)                           | Release Date |
-|---------------------------| ------------------------------------------ | ---------------------------------------- |--------------|
-| **InternLM3-8B-Instruct** | [🤗internlm3-8b-instruct](https://huggingface.co/internlm/internlm3-8b-instruct) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm3-8b-instruct](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm3-8b-instruct) | 2025-01-15   |
+
+| Model                     | Transformers(HF)                                         | ModelScope(HF)                                         | Modelers(HF)                                          | Release Date |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------- | ------------ |
+| **InternLM3-8B-Instruct** | [🤗internlm3_8B_instruct](https://huggingface.co/internlm/internlm3-8b-instruct) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm3_8b_instruct](https://www.modelscope.cn/models/Shanghai_AI_Laboratory/internlm3-8b-instruct/summary) | [![Open in Modelers](<>)](https://modelers.cn/models/Intern/internlm3-8b-instruct) | 2025-01-15   |
 
 ## 环境准备
 
@@ -155,7 +156,9 @@ randomness = dict(seed=123, deterministic=True)
 NPROC_PER_NODE=8 xtuner train internlm3_8b_instruct_lora_oasst1_e10.py --deepspeed deepspeed_zero2
 ```
 
-微调后结果保存在`./work_dirs/internlm3_8b_instruct_lora_oasst1_e10/iter_xxx.pth`下。
+微调后结果保存在`./work_dirs/internlm3_8b_instruct_lora_oasst1_e10/iter_xxx.pth`,NPU与GPU的loss对比如下：
+
+![xtuner_training_loss](assets/xtuner_loss.png)
 
 ### 模型转换
 
@@ -240,6 +243,7 @@ plot_loss: true
 overwrite_output_dir: true
 
 ### train
+
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 1
 learning_rate: 1.0e-6

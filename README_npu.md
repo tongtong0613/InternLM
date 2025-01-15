@@ -42,9 +42,10 @@ This is a guide to using Ascend NPU to train and infer the InternLM series model
 ## Model Zoo
 
 ### InternLM3
-| Model                     | Transformers(HF)                           | ModelScope(HF)                           | Release Date |
-|---------------------------| ------------------------------------------ | ---------------------------------------- |--------------|
-| **InternLM3-8B-Instruct** | [🤗internlm3-8b-instruct](https://huggingface.co/internlm/internlm3-8b-instruct) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm3-8b-instruct](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm3-8b-instruct) | 2025-01-15   |
+
+| Model                     | Transformers(HF)                                         | ModelScope(HF)                                         | Modelers(HF)                                          | Release Date |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------- | ------------ |
+| **InternLM3-8B-Instruct** | [🤗internlm3_8B_instruct](https://huggingface.co/internlm/internlm3-8b-instruct) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm3_8b_instruct](https://www.modelscope.cn/models/Shanghai_AI_Laboratory/internlm3-8b-instruct/summary) | [![Open in Modelers](<>)](https://modelers.cn/models/Intern/internlm3-8b-instruct) | 2025-01-15   |
 
 ## Environment Setup
 
@@ -157,6 +158,10 @@ NPROC_PER_NODE=8 xtuner train internlm3_8b_instruct_lora_oasst1_e10.py --deepspe
 
 The fine-tuning results are saved in the directory `./work_dirs/internlm3_8b_instruct_lora_oasst1_e10/iter_xxx.pth`.
 
+The comparison of loss between NPU and GPU is as follows:
+
+![xtuner_training_loss](assets/xtuner_loss.png)
+
 ### Model Convert
 
 Convert the model weight file obtained from fine-tuning into the Hugging Face format, which facilitates subsequent deployment and usage.
@@ -243,6 +248,7 @@ plot_loss: true
 overwrite_output_dir: true
 
 ### train
+
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 1
 learning_rate: 1.0e-6
