@@ -37,7 +37,7 @@
 这是一份使用 Ascend NPU 对 InternLM 系列模型进行训练和推理的指南。
 
 ## News
-\[2025.01.15\] InternLM3-8B-Instruct 可用于 Xtuner、LLaMa-Factory 和 transformers 中。
+\[2025.01.15\] InternLM3-8B-Instruct 可用于 Xtuner、LLaMA-Factory 和 transformers 中。
 
 ## Model Zoo
 
@@ -156,9 +156,9 @@ randomness = dict(seed=123, deterministic=True)
 NPROC_PER_NODE=8 xtuner train internlm3_8b_instruct_lora_oasst1_e10.py --deepspeed deepspeed_zero2
 ```
 
-微调后结果保存在`./work_dirs/internlm3_8b_instruct_lora_oasst1_e10/iter_xxx.pth`,NPU与GPU的loss对比如下：
+微调后结果保存在`./work_dirs/internlm3_8b_instruct_lora_oasst1_e10/iter_xxx.pth`，NPU与GPU的loss对比如下：
 
-![xtuner_training_loss](assets/xtuner_loss.png)
+![xtuner_training_loss](assets/xtuner_training_loss_compare.png)
 
 ### 模型转换
 
@@ -186,9 +186,9 @@ cp path_to_your_model/modeling_internlm3.py ./work_dirs/merge_output
 xtuner chat ./work_dirs/merge_output --prompt-template internlm2_chat
 ```
 
-## LLama-Factory
+## LLaMA-Factory
 
-### 安装 LLaMa-Factory
+### 安装 LLaMA-Factory
 
 ```shell
 git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
@@ -198,7 +198,7 @@ pip install -e ".[torch-npu,metrics]"
 
 ### 推理
 
-在 LLaMa-Factory 路径下新建`examples/inference/internlm3_8b_instruct.yaml`推理配置文件，文件内容为：
+在 LLaMA-Factory 路径下新建`examples/inference/internlm3_8b_instruct.yaml`推理配置文件，文件内容为：
 
 ```yaml
 model_name_or_path: xxx # Support only local loading. Set this parameter to the local weight path of InternLM3-8B-Instruct.
@@ -214,7 +214,7 @@ llamafactory-cli chat examples/inference/internlm3_8b_instruct.yaml
 
 ### 微调
 
-在 LLaMa-Factory 路径下新建`examples/train_full/internlm3_8b_instruct_full_sft.yaml`微调配置文件，微调配置文件如下：
+在 LLaMA-Factory 路径下新建`examples/train_full/internlm3_8b_instruct_full_sft.yaml`微调配置文件，微调配置文件如下：
 
 ```yaml
 ### model
@@ -273,7 +273,7 @@ llamafactory-cli train examples/train_full/internlm3_8b_instruct_full_sft.yaml
 
 与GPU对比的loss曲线如下：
 
-![training_loss_compare](assets/lf_traing_loss_compare.png)
+![training_loss_compare](assets/lf_training_loss_compare.png)
 
 ## Transformers
 
