@@ -316,7 +316,7 @@ The openMind Library provides a one-click model fine-tuning solution on Ascend N
 #### Installing the openMind Library
 
 ```shell
-git clone -b dev https://gitee.com/ascend/openmind.git
+git clone https://gitee.com/ascend/openmind.git
 cd openmind
 pip install -e .[pt]
 ```

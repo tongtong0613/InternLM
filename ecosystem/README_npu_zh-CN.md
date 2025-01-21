@@ -315,7 +315,7 @@ openMind Library 提供了昇腾 NPU 上的一键式模型微调方案，涵盖�
 #### 安装 openMind Library
 
 ```shell
-git clone -b dev https://gitee.com/ascend/openmind.git
+git clone https://gitee.com/ascend/openmind.git
 cd openmind
 pip install -e .[pt]
 ```
